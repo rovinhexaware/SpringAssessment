@@ -25,24 +25,6 @@ public class MainController {
     @Autowired
     private DataService service;
 
-    @GetMapping("/")
-    public Iterable<Books> Books(){
-        Iterable<Books> book = this.service.getAllBooks();
-        return book;
-    }
-
-    @GetMapping("/library")
-    public Library Test(){
-        Library library = this.service.getLibraryById(102);
-        return library;
-    }
-
-    @GetMapping("/find")
-    public ResponseEntity<Object> Find(){
-        Library library = this.service.getLibraryById(102);
-        return new ResponseEntity<>(library, HttpStatus.ACCEPTED);
-    }
-
     @GetMapping("/getbooks")
     public List<Map> GetBooks(){
 

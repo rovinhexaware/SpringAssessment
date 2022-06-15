@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-//@Component
+@Component
 public class DataLoader {
     private BookDao bookEntity;
     private LibraryDao libraryEntity;

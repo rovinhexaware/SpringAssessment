@@ -31,8 +31,8 @@ public class Books {
         this.bookId = bookId;
     }
 
-    public Library getLibraryId() {
-        return library;
+    public int getLibraryId() {
+        return library.getLibraryId();
     }
 
     public void setLibraryId(Library libraryId) {
