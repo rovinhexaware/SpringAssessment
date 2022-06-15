@@ -12,11 +12,17 @@ import java.util.List;
 
 @Service
 public class DataServiceImplementation implements DataService{
-    @Autowired
+//    @Autowired
     private LibraryDao libraryDao;
 
-    @Autowired
+//    @Autowired
     private BookDao bookDao;
+
+    @Autowired
+    public DataServiceImplementation(LibraryDao libraryDao, BookDao bookDao) {
+        this.libraryDao = libraryDao;
+        this.bookDao = bookDao;
+    }
 
     @Override
     public Books addBook(Books book) {
@@ -28,28 +34,29 @@ public class DataServiceImplementation implements DataService{
         return this.libraryDao.save(library);
     }
 
+    @Override
     public Iterable<Books> getAllBooks(){
         return bookDao.findAll();
     }
 
+    @Override
     public List<Library> getAllLibrary(){
         return libraryDao.findAll();
     }
 
+    @Override
     public Library getLibraryById(int id){
-        return libraryDao.getReferenceById(id);
+        return libraryDao.findById(id).get();
     }
 
+    @Override
     public List<Books> getByLibrary(Library library){
         return bookDao.getByLibrary(library);
     }
 
+    @Override
     public List<Books> findAllGroupByLibrary(Library library){
         return bookDao.findAllGroupByLibrary(library);
     };
-
-//    public long countBooks(){
-//        return bookDao.findAllGroupByLibrary().stream().count();
-//    }
 
 }

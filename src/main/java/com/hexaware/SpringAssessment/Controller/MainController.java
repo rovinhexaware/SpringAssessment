@@ -5,10 +5,13 @@ import com.hexaware.SpringAssessment.Entity.Library;
 import com.hexaware.SpringAssessment.Service.DataService;
 import com.hexaware.SpringAssessment.Service.DataServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,21 +23,37 @@ import java.util.stream.Collectors;
 public class MainController {
 
     @Autowired
-    private DataServiceImplementation service;
+    private DataService service;
+
+    @GetMapping("/")
+    public Iterable<Books> Books(){
+        Iterable<Books> book = this.service.getAllBooks();
+        return book;
+    }
+
+    @GetMapping("/library")
+    public Library Test(){
+        Library library = this.service.getLibraryById(102);
+        return library;
+    }
+
+    @GetMapping("/find")
+    public ResponseEntity<Object> Find(){
+        Library library = this.service.getLibraryById(102);
+        return new ResponseEntity<>(library, HttpStatus.ACCEPTED);
+    }
 
     @GetMapping("/getbooks")
     public List<Map> GetBooks(){
+
         Function<Library, Map> getBook = (library) -> {
-            Map<String, String> returnThis = new HashMap<>();
+            Map<String, List> returnThis = new HashMap<>();
             List<Books> books = this.service.findAllGroupByLibrary(library).stream().toList();
-//            books.stream().forEach((book) -> {
-//                System.out.println("HIIIIIIIIIIIIIIIIIIIIII: " + book.toString() );
-//            });
-            returnThis.put(library.getLibraryName(), books.toString());
+            returnThis.put(library.getLibraryName(), books);
             return returnThis;
         };
-
         return this.service.getAllLibrary().stream().map(getBook).collect(Collectors.toList());
+//        return z;
     }
 
     @GetMapping("/countbooks")

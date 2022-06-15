@@ -10,4 +10,8 @@ public interface DataService {
     Books addBook(Books book);
     Library addLibrary(Library library);
     Iterable<Books> getAllBooks();
+    public List<Library> getAllLibrary();
+    public Library getLibraryById(int id);
+    public List<Books> getByLibrary(Library library);
+    public List<Books> findAllGroupByLibrary(Library library);
 }

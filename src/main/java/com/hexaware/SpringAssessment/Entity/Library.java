@@ -8,8 +8,8 @@ public class Library {
     @Id
     private int libraryId;
 
-    @OneToMany( mappedBy = "library" )
-    private List<Books> books;
+//    @OneToMany( mappedBy = "library" )
+//    private List<Books> books;
 
     private String libraryName;
 
@@ -21,13 +21,13 @@ public class Library {
     public Library() {
     }
 
-    public List<Books> getBooks() {
-        return books;
-    }
+//    public List<Books> getBooks() {
+//        return books;
+//    }
 
-    public void setBooks(List<Books> books) {
-        this.books = books;
-    }
+//    public void setBooks(List<Books> books) {
+//        this.books = books;
+//    }
 
     public int getLibraryId() {
         return libraryId;

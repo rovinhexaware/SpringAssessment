@@ -51,7 +51,6 @@ public class Books {
     public String toString() {
         return "{" +
                 "bookId='" + bookId + '\'' +
-                ", libraryID=" + library.getLibraryId() +
                 ", bookName='" + bookName + '\'' +
                 '}';
     }
